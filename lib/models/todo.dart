@@ -10,26 +10,26 @@ class Todo {
     required this.id,
     required this.task,
     required this.isDone,
-    this.createdAt
+    this.createdAt,
   });
 
-  // Firestore -> Object Flutter (Todo)
+  // Mengubah data dari Firestore menjadi Objek Dart
   factory Todo.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return Todo(
-        id: doc.id,
-        task: data['task'] as String,
-        isDone: data['isDone'] as bool,
-        createdAt: data['createdAt'] as Timestamp?
+      id: doc.id,
+      task: data['task'] as String,
+      isDone: data['isDone'] as bool,
+      createdAt: data['createdAt'] as Timestamp?,
     );
   }
 
-  // Objek Flutter -> Firestore
-  Map<String, dynamic> toMap(){
+  // Mengubah Objek Dart menjadi format yang diterima Firestore
+  Map<String, dynamic> toMap() {
     return {
       'task': task,
       'isDone': isDone,
-      'createdAt': createdAt ?? FieldValue.serverTimestamp()
+      'createdAt': createdAt ?? FieldValue.serverTimestamp(),
     };
   }
 }

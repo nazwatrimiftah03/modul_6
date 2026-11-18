@@ -1,8 +1,25 @@
+// build.gradle.kts
+
+// Import untuk membaca key.properties (Modul 8, langkah 3.3.3)
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
+    //
     id("com.google.gms.google-services")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("kotlin-android")
+    //
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Membaca kredensial keystore dari android/key.properties
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    FileInputStream(keystorePropertiesFile).use {
+        keystoreProperties.load(it)
+    }
 }
 
 android {
@@ -23,9 +40,20 @@ android {
         versionName = flutter.versionName
     }
 
+    // Konfigurasi signing untuk build release
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
+
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("debug")
+            // Sebelumnya memakai kunci "debug", sekarang memakai kunci "release"
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

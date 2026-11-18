@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:modul_6/utils/snackbar_helper.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_notifier.dart';
 
 class SignUpScreen extends StatelessWidget {
+  // Controller untuk email & password
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -12,6 +12,8 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+
+    // Menghubungkan AuthNotifier
     final authNotifier = Provider.of<AuthNotifier>(context);
 
     return Scaffold(
@@ -22,7 +24,10 @@ class SignUpScreen extends StatelessWidget {
           children: [
             const Text(
               'Sign Up',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: screenWidth * 0.05),
             TextField(
@@ -42,6 +47,7 @@ class SignUpScreen extends StatelessWidget {
               obscureText: true,
             ),
             SizedBox(height: screenWidth * 0.05),
+            // Tombol Sign Up
             ElevatedButton(
               onPressed: authNotifier.isLoading
                   ? null
@@ -50,13 +56,11 @@ class SignUpScreen extends StatelessWidget {
                   emailController.text,
                   passwordController.text,
                 );
-
                 if (!context.mounted) return;
-
                 if (success) {
                   Navigator.pop(context);
                 } else {
-                  SnackBarHelper.show(context, 'Gagal Sign Up');
+                  print("Gagal Sign Up");
                 }
               },
               child: authNotifier.isLoading

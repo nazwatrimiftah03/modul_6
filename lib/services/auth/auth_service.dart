@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-  // Singleton Pattern -> 1 Objek
+  // Singleton Pattern -> hanya 1 objek
   AuthService._internal();
-  static final AuthService _instances = AuthService._internal();
+  static final AuthService _instance = AuthService._internal();
   factory AuthService() {
-    return _instances; // perbaikan: tambah ; dan hapus "};"
+    return _instance;
   }
 
   // Alias firebase autentikasi

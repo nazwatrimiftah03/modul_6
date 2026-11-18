@@ -37,7 +37,9 @@ dependencies:
   firebase_auth: ^7.0.1
   firebase_core: ^5.1.0
   provider: ^6.1.5+1
-  cloud_firestore: ^7.1.0
+  cloud_firestore: ^7.2.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.8
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +62,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # Daftarkan folder gambar agar bisa dibaca aplikasi (Modul 8)
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -91,3 +97,23 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# Konfigurasi ikon aplikasi (flutter_launcher_icons)
+# Letakkan di luar blok flutter:, tanpa indentasi
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/images/app_icon_pink.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/images/app_icon_pink.png"
+
+# Konfigurasi splash screen (flutter_native_splash)
+flutter_native_splash:
+  android: true
+  ios: false
+  web: false
+  color: "#FFFFFF"
+  image: assets/images/splash_screen_icon_pink.png
+  android_12:
+    color: "#FFFFFF"
+    image: assets/images/splash_screen_icon_pink.png

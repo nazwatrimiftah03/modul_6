@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SnackBarHelper {
-  static void show(BuildContext context, String message, {bool isError = true}) {
+  static void show(BuildContext context, String message,
+      {bool isError = true}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),

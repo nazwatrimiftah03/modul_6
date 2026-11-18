@@ -13,19 +13,21 @@ class ProfileScreen extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      appBar: AppBar(title:  Text('Profile')),
+      appBar: AppBar(title: const Text('Profile')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Welcome, ${user?.email}',
-                style: TextStyle(fontSize: 18)),
+            Text(
+              'Welcome, ${user?.email}',
+              style: const TextStyle(fontSize: 18),
+            ),
             SizedBox(height: screenWidth * 0.05),
             ElevatedButton(
               onPressed: () {
                 context.read<AuthNotifier>().signOut();
               },
-              child: Text('Logout'),
+              child: const Text('Logout'),
             ),
           ],
         ),

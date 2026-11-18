@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart'; // perbaikan: untuk tipe User
 import 'package:flutter/material.dart';
-import '../services/auth/auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../services/auth/auth_service.dart';
 
 class AuthNotifier with ChangeNotifier {
   final AuthService _authService = AuthService();
